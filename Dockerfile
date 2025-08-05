@@ -1,7 +1,7 @@
 #####################################################################
 #                            Build Stage                            #
 #####################################################################
-FROM hugomods/hugo:exts as builder
+FROM hugomods/hugo:exts AS builder
 # Base URL
 ARG HUGO_BASEURL='https://gazette.julesfournier.fr'
 ENV HUGO_BASEURL=${HUGO_BASEURL}

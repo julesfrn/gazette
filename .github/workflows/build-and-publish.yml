@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Login into registry
         run: echo $GITHUB_TOKEN | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin

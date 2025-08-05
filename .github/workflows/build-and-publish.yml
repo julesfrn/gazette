@@ -1,0 +1,38 @@
+name: Package and publish gazette
+
+on:
+  push:
+    branches:
+      - 'main'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: '${{github.repository}}:${{ github.sha }}'
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Login into registry
+        run: echo $GITHUB_TOKEN | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build image
+        run: |
+          # enable containerd for multiplatform builds
+          docker run --privileged --rm tonistiigi/binfmt --install all
+          sudo mkdir -p /etc/docker
+          sudo touch /etc/docker/daemon.json
+          echo '{ "features": { "containerd-snapshotter": true } }' | sudo tee /etc/docker/daemon.json
+          sudo systemctl restart docker
+          docker buildx build --platform linux/arm64,linux/amd64 -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} .
+
+      - name: Push image
+        run: docker image push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}

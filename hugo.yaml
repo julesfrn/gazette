@@ -2,3 +2,58 @@ baseURL: https://gazette.julesfournier.fr/
 languageCode: fr-fr
 title: La Gazette du Dev
 theme: ["PaperMod"]
+defaultContentLanguage: fr
+
+# copyright: "© [toto](https://github.com/adityatelange/hugo-PaperMod/graphs/contributors)"
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+mainsections: ["posts", "papermod"]
+
+pagination:
+  disableAliases: false
+  pagerSize: 5
+
+taxonomies:
+  category: categories
+  tags: tags
+
+params:
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+  ShowToc: false
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+  editPost:
+    URL: "https://github.com/julesfrn/gazette/tree/main/content"
+    Text: "Un commentaire ou un retour ?"
+    appendFilePath: true
+  homeInfoParams:
+    Title: Hi there wave
+    Content: Can be Info, links, about...
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    # limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - name: Recherche
+      url: recherche/
+      weight: 10
+    - name: Catégories
+      url: categories/
+      weight: 10
+    - name: julesfournier.fr
+      url: https://dev.julesfournier.fr
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search

@@ -29,8 +29,8 @@ params:
     Text: "Un commentaire ou un retour ?"
     appendFilePath: true
   homeInfoParams:
-    Title: Hi there wave
-    Content: Can be Info, links, about...
+    Title: La Gazette du Dev
+    Content: La Gazette du Dev est un blog dédié aux développeurs. J'y aborde des sujets variés tels que l'architecture logicielle, le déploiement continu d'applications, et d'autres thèmes qui me tiennent à cœur.
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
@@ -57,3 +57,8 @@ outputs:
     - HTML
     - RSS
     - JSON # necessary for search
+
+markup:
+  highlight:
+    noClasses: false
+    style: dracula

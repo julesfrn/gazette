@@ -50,7 +50,7 @@ menu:
       url: categories/
       weight: 10
     - name: julesfournier.fr
-      url: https://dev.julesfournier.fr
+      url: https://julesfournier.fr
 
 outputs:
   home:

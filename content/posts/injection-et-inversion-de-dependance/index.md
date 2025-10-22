@@ -28,9 +28,9 @@ Nous avons donc terminé de programmer la vérification d’un abonnement et nou
 import { SubscriptionModel } from './database/models'
 
 export class SubscriptionManager {
-  constructor(private readonly subscriptionModel: SubscriptionModel){}
+  constructor(private readonly subscriptionModel: SubscriptionModel) {}
 
-  isClientStillSubscribed(clientId: string) {
+  isClientStillSubscribed(clientId: string): boolean {
     const subscription = this.subscriptionModel.findOne(clientId)
     return subscription.expirationDate < new Date() 
   }
@@ -57,9 +57,9 @@ export interface SubscriptionService {
 }
 
 export class SubscriptionManager {
-  constructor(private readonly subscriptionService: SubscriptionService){}
+  constructor(private readonly subscriptionService: SubscriptionService) {}
 
-  isClientStillSubscribed(clientId: string) {
+  isClientStillSubscribed(clientId: string): boolean {
     const subscription = this.subscriptionService.findOne(clientId)
     return subscription.expirationDate < new Date()
   }
